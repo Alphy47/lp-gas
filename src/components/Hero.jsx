@@ -3,7 +3,7 @@ import React from 'react'
 const Hero = () => {
   return (
     <div className='text-white'>
-        <div className='max-w-[800] mt-[96px] w-full h-screen mx-auto text-center flex flex-col justify-center'>
+        <div className='max-w-[800] mt-[5px] w-full h-screen mx-auto text-center flex flex-col justify-center'>
             <p className='text-[#a8a8a8] font-bold p-2'>Your Quick Solution to Hassle-Free Ordering</p>
             <div>
                 <h1 className='md:text-4xl sm:text-3xl text-2xl font-bold md:py-6'>Igniting Convenience at Your Fingertips.</h1>
