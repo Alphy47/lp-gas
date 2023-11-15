@@ -8,8 +8,9 @@ const NavBar = () => {
     const handleNav = () =>{
         setNav(!nav)
     }
+
   return (
-    <div className='flex justify-between items-center h-24 max-w-[1240px] mx-auto px-5 text-white'>
+    <div className='flex justify-between items-center sticky top-0 w-[100%] h-24 max-w-[1240px] mx-auto px-5 text-white bg-[#0a042d]'>
 
         <h1 className='w-full text-3xl font-bold text-[#a8a8a8]'>LPG</h1>
 
