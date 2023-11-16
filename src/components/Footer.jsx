@@ -13,13 +13,13 @@ const Footer = () => {
         <div>
             <h1 className='w-full text-3xl font-bold text-[#a8a8a8]'>LPG</h1>
             <p className='py-4'>Your instant gateway to seamless gas ordering. Effortless,
-            swift,anywhere you are!</p>
-            <div className='flex justify-between ms:w-[75%] my-6'>
-                <FaFacebookSquare size={30} />
-                <FaInstagram size={30} />
-                <FaTwitterSquare size={30} />
-                <FaGithubSquare size={30} />
-                <FaDribbbleSquare size={30} />
+            swift, anywhere you are!</p>
+            <div className='flex justify-between ms:w-[75%] my-6 '>
+                <FaFacebookSquare size={30} style={{ color: '#FF5733'}}/>
+                <FaInstagram size={30} style={{ color: '#FF5733'}}/>
+                <FaTwitterSquare size={30} style={{ color: '#FF5733'}}/>
+                <FaGithubSquare size={30} style={{ color: '#FF5733'}}/>
+                <FaDribbbleSquare size={30} style={{ color: '#FF5733'}}/>
             </div>
         </div>
         <div className='lg:col-span-2 flex justify-between'>
