@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import {AiOutlineClose, AiOutlineMenu} from 'react-icons/ai'
 import logo from '../assests/logo.png'
+import { useRef } from "react"
 
 const NavBar = () => {
 
@@ -8,42 +9,49 @@ const NavBar = () => {
 
     const handleNav = () =>{
         setNav(!nav)
+        
     }
+    
+
 
   return (
-    <div className='flex justify-between items-center sticky top-0 w-[100%] h-24 max-w-[1240px] mx-auto px-5 text-white bg-[#0a042d]'>
+    <div className='hero flex justify-between items-center sticky top-0 w-[100%] h-24 max-w-[100%] mx-auto px-9 text-white bg-[#0a042d]'>
 
         <div>
             <img className='w-[90px] mx-auto my-4' src={logo} alt='/' />
         </div>
 
         <ul className='hidden md:flex h-[45%] py-[7px] ' >
-            <li className='p-2 py-1 px-4 justify-center' 
+            <li className='link p-2 py-1 px-4 justify-center rounded-md' 
                 style = {{ transition: 'background-color 0.3', cursor: 'pointer',}}
                 onMouseEnter={(e) => {
                     e.target.style.backgroundColor = '#FF5733';
-                    e.target.style.color = 'white';
+                    e.target.style.color = 'black';
                 }}
                 onMouseLeave={(e) => {
                     e.target.style.backgroundColor = 'transparent';
                     e.target.style.color = 'white';
                 }}>
+                    
                     Home
             </li>
 
-            <li className='p-2 py-1 px-4 justify-center' 
+            <li className='link p-2 py-1 px-4 justify-center rounded-md ms-1' 
                 style = {{ transition: 'background-color 0.3', cursor: 'pointer',}}
                 onMouseEnter={(e) => {
-                    e.target.style.backgroundColor = '#fc7153';
-                    e.target.style.color = 'white';
+                    e.target.style.backgroundColor = '#FF5733';
+                    e.target.style.color = 'black';
                 }}
                 onMouseLeave={(e) => {
                     e.target.style.backgroundColor = 'transparent';
                     e.target.style.color = 'white';
                 }}>
+                    
                     About
             </li>
-            <li className='p-2 py-1 px-4 justify-center'>Login</li>
+            <button className='bg-[#FF5733] w-[75px] rounded-md font-bold my-0 mx-3 py-1 text-black ' >
+                LOGIN
+            </button>
         </ul>
 
         <div onClick={handleNav} className='block md:hidden'>

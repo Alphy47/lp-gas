@@ -3,7 +3,7 @@ import us from '../assests/us.jpg'
 
 const Intro = () => {
   return (
-    <div className='w-full bg-white py-16 px-4'>
+    <div className='intro w-full h-95% bg-white py-20 px-4 justify-center'>
         <div className='max-w-[1240px] mx-auto grid md:grid-cols-2'>
             <img className='w-[500px] mx-auto my-4' src={us} alt='/' />
             <div className='flex flex-col justify-center'>
