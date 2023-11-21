@@ -1,7 +1,8 @@
 import React, {useState} from 'react'
+import {Link} from 'react-scroll'
 import {AiOutlineClose, AiOutlineMenu} from 'react-icons/ai'
 import logo from '../assests/logo.png'
-import { useRef } from "react"
+
 
 const NavBar = () => {
 
@@ -11,47 +12,76 @@ const NavBar = () => {
         setNav(!nav)
         
     }
-    
+    const [showLoginForm, setShowLoginForm] = useState(false)
+    const handleLoginClick = () => {
+        setShowLoginForm(true);
+    }
 
 
   return (
-    <div className='hero flex justify-between items-center sticky top-0 w-[100%] h-24 max-w-[100%] mx-auto px-9 text-white bg-[#0a042d]'>
+    <div className=' flex justify-between items-center sticky top-0 w-[100%] h-24 max-w-[100%] mx-auto px-9 text-white bg-[#0a042d]'>
 
         <div>
             <img className='w-[90px] mx-auto my-4' src={logo} alt='/' />
         </div>
 
         <ul className='hidden md:flex h-[45%] py-[7px] ' >
-            <li className='link p-2 py-1 px-4 justify-center rounded-md' 
-                style = {{ transition: 'background-color 0.3', cursor: 'pointer',}}
-                onMouseEnter={(e) => {
-                    e.target.style.backgroundColor = '#FF5733';
-                    e.target.style.color = 'black';
+            <li className='link '
+                /*onMouseEnter={(e) => {
+                    e.target.style.backgroundColor = '#';
+                    e.target.style.color = 'white';
+                    e.target.style.fontWeight = 'bold';
                 }}
                 onMouseLeave={(e) => {
                     e.target.style.backgroundColor = 'transparent';
                     e.target.style.color = 'white';
-                }}>
-                    
-                    Home
-            </li>
+                }}*/
+                >
+                <Link to="hero" smooth={true} duration={500}>
+                    <button className='bg-transparent w-[70px] rounded-md font-bold my-0 mx-auto py-1 text-white'
+                            style={{transition: 'background-color 0.3s color 0.3s', cursor: 'pointer',
+                            border: 'none', 
+                            backgroundColor: 'transparent',
+                            color: 'white' }}
+                                onMouseEnter={(e) => {
+                                    e.target.style.backgroundColor = '#FF5733'; 
+                                    e.target.style.color = 'white'; 
+                                }}
 
-            <li className='link p-2 py-1 px-4 justify-center rounded-md ms-1' 
-                style = {{ transition: 'background-color 0.3', cursor: 'pointer',}}
-                onMouseEnter={(e) => {
-                    e.target.style.backgroundColor = '#FF5733';
-                    e.target.style.color = 'black';
-                }}
-                onMouseLeave={(e) => {
-                    e.target.style.backgroundColor = 'transparent';
-                    e.target.style.color = 'white';
-                }}>
-                    
-                    About
+                                onMouseLeave={(e) => {
+                                    e.target.style.backgroundColor = 'transparent';
+                                    e.target.style.color = 'white'; 
+                                }}>
+                        Home
+                    </button>
+                </Link>
+                
             </li>
-            <button className='bg-[#FF5733] w-[75px] rounded-md font-bold my-0 mx-3 py-1 text-black ' >
-                LOGIN
+            
+            <li className='link'>
+                <Link to="intro" smooth={true} duration={500}>
+                <button className='bg-transparent w-[70px] rounded-md font-bold my-0 mx-auto py-1 text-white'
+                            style={{transition: 'background-color 0.3s color 0.3s', cursor: 'pointer',
+                            border: 'none', 
+                            backgroundColor: 'transparent',
+                            color: 'white' }}
+                                onMouseEnter={(e) => {
+                                    e.target.style.backgroundColor = '#FF5733'; 
+                                    e.target.style.color = 'white'; 
+                                }}
+
+                                onMouseLeave={(e) => {
+                                    e.target.style.backgroundColor = 'transparent';
+                                    e.target.style.color = 'white'; 
+                                }}>
+                        About
+                    </button>
+                </Link>
+            </li>
+            <button className='bg-[#FF5733] w-[75px] rounded-md font-bold my-0 mx-3 py-1 text-black ' onClick={handleLoginClick}>
+                SIGN IN
             </button>
+            
         </ul>
 
         <div onClick={handleNav} className='block md:hidden'>
@@ -59,11 +89,18 @@ const NavBar = () => {
             
         </div>
 
-        <div  className={nav ? 'fixed left-0 top-0 w-[60%] h-full border-r border-r-[#172554] bg-[#787A91] ease-in-out duration-500' : 'fixed left-[-100%]'}>
-            <h1 className='w-full text-3xl font-bold text-[#a8a8a8] m-4'>LPG</h1>
+        <div  className={nav ? 'fixed left-0 top-0 w-[60%] h-full border-r border-r-[#FF5733] border-t border-t-[#FF5733] border- bg-[#0a042d] opacity-2 ease-in-out duration-500' : 'fixed left-[-100%]'}>
+        <div>
+            <img className='w-[90px] mx-auto my-4' src={logo} alt='/' />
+        </div>
             <ul className='uppercase p-4'>
-                <li className='p-4 border-b border-[#EEEEEE]'>Home</li>
-                <li className='p-4 border-b border-[#EEEEEE]'>About</li>
+                <li className='p-4 border-b border-[#FF5733]'>
+                <Link to="home" smooth={true} duration={500}>
+                    Home
+                </Link>
+                </li>
+                
+                <li className='p-4 border-b border-[#FF5733]'>About</li>
                 <li className='p-4'>Login</li>
             </ul>
         </div>

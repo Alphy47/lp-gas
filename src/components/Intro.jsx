@@ -3,8 +3,8 @@ import us from '../assests/us.jpg'
 
 const Intro = () => {
   return (
-    <div className='intro w-full h-95% bg-white py-20 px-4 justify-center'>
-        <div className='max-w-[1240px] mx-auto grid md:grid-cols-2'>
+    <div id='intro' className='intro w-full h-100% bg-white  pt-20 pb-10 px-4 justify-center'>
+        <div className='max-w-[1240px] mx-auto mt-4 grid md:grid-cols-2'>
             <img className='w-[500px] mx-auto my-4' src={us} alt='/' />
             <div className='flex flex-col justify-center'>
                 <h1 className='text-[#0a042d] md:text-4xl sm:text-3xl text-2xk font-bold py-2'>EFFORTLESS GAS SOLUTIONS AT YOUR DOORSTEP.</h1>
