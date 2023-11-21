@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import {Link} from 'react-scroll'
 import {AiOutlineClose, AiOutlineMenu} from 'react-icons/ai'
 import logo from '../assests/logo.png'
+import { useNavigate } from 'react-router-dom';
 
 
 const NavBar = () => {
@@ -17,12 +18,14 @@ const NavBar = () => {
         setShowLoginForm(true);
     }
 
+    const navigate = useNavigate()
+
 
   return (
     <div className=' flex justify-between items-center sticky top-0 w-[100%] h-24 max-w-[100%] mx-auto px-9 text-white bg-[#0a042d]'>
 
         <div>
-            <img className='w-[90px] mx-auto my-4' src={logo} alt='/' />
+            <img className='w-[75px] mx-auto my-4' src={logo} alt='/' />
         </div>
 
         <ul className='hidden md:flex h-[45%] py-[7px] ' >
@@ -78,7 +81,7 @@ const NavBar = () => {
                     </button>
                 </Link>
             </li>
-            <button className='bg-[#FF5733] w-[75px] rounded-md font-bold my-0 mx-3 py-1 text-black ' onClick={handleLoginClick}>
+            <button className='bg-[#FF5733] w-[75px] rounded-md font-bold my-0 mx-3 py-1 text-black ' onClick={() => navigate ('signin')}>
                 SIGN IN
             </button>
             
@@ -101,7 +104,7 @@ const NavBar = () => {
                 </li>
                 
                 <li className='p-4 border-b border-[#FF5733]'>About</li>
-                <li className='p-4'>Login</li>
+                
             </ul>
         </div>
     </div>
