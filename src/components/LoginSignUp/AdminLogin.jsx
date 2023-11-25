@@ -1,19 +1,17 @@
 import React, {useState} from 'react'
 import indexbg from '../../assests/indexbg.jpg'
 import { useNavigate } from 'react-router-dom';
-
 import {
-    FaEnvelope,
     FaLock,
     FaUser,
     FaTimes
 } from 'react-icons/fa'
 
-const LoginSignUp = () => {
+const AdminLogin = () => {
 
 const navigate = useNavigate()
 
-const [action, setAction] = useState("Log In")
+const [action, setAction] = useState("Log In as Administrator")
 
   return (
     <div className='bg-cover h-screen flex items-center justify-center' 
@@ -29,8 +27,8 @@ const [action, setAction] = useState("Log In")
         <div className='inputs flex flex-col gap-1'>
             
             <div className='input flex items-center  m-auto w-[300px] h-[80px] bg-transparent rounded-[6px]'>
-                <FaEnvelope className='px-2' size={35} style={{ color: '#FF5733'}}/>
-                <input className='  bg-transparent text-white text-[19px]'  style={{width:"85%"}} type='text' placeholder='E-mail'/>
+                <FaUser className='px-2' size={35} style={{ color: '#FF5733'}}/>
+                <input className='  bg-transparent text-white text-[19px]'  style={{width:"85%"}} type='text' placeholder='Username'/>
             </div>
             <div className='input flex items-center m-auto w-[300px] h-[80px] bg-transparent rounded-[6px]'>
                 <FaLock className='px-2' size={35} style={{ color: '#FF5733'}}/>
@@ -38,24 +36,8 @@ const [action, setAction] = useState("Log In")
             </div>
             
             <div className='submit-container flex mx-auto my-[1rem]  gap-1'>
-            <button className='bg-white w-[100px] rounded-md font-bold mb-4 mt-2 mx-auto py-0 h-[30px] text-black' 
-            style = {{ transition: 'background-color 0.3s, color 0.3s',
-              border: 'none', 
-              cursor: 'pointer',
-              backgroundColor: 'white',
-              color: 'black' }}
-              onMouseEnter={(e) => {
-                e.target.style.backgroundColor = '#FF5733'; 
-                e.target.style.color = 'white'; 
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.backgroundColor = 'white';
-                e.target.style.color = 'black'; 
-              }}
-              onClick={() => navigate ('/signin')}
-            >Sign Up</button>
 
-<button className='bg-white w-[100px] rounded-md font-bold mt-2 mb-0 mx-auto  h-[30px] text-black' 
+<button className='bg-white w-[100px] rounded-md font-bold my-2 mx-auto py-0 h-[30px] text-black' 
             style = {{ transition: 'background-color 0.3s, color 0.3s',
               border: 'none', 
               cursor: 'pointer',
@@ -72,13 +54,6 @@ const [action, setAction] = useState("Log In")
 
             >Log In</button>
             </div>
-            <div>
-              <p className='text-white flex pb-6 justify-center'>LogIn As an &nbsp;
-              
-                <a href='/adminlogin' className='text-[#FF5733] '>Administrator.</a>
-              
-              </p>
-            </div>
             
         </div>
         </div>
@@ -87,5 +62,4 @@ const [action, setAction] = useState("Log In")
   )
 }
 
-export default LoginSignUp
-
+export default AdminLogin
