@@ -1,5 +1,6 @@
 import react from 'react'
 import { BrowserRouter as Router, Route, Link, BrowserRouter, Routes } from 'react-router-dom';
+//Home components
 import NavBar from './components/NavBar';
 import Hero from './components/Hero';
 import Intro from './components/Intro';
@@ -10,8 +11,13 @@ import AdminLogin from './components/LoginSignUp/AdminLogin';
 import SellerNavBar from './components/SellerComponents/SellerNavBar';
 import Header from './components/AdminComponents/Header';
 import SideBar from './components/AdminComponents/SideBar';
+//admin components
 import AdminLayout from './components/AdminComponents/AdminLayout';
+import AdminDashboard from './components/AdminComponents/AdminDashboard';
 import Sellers from './components/AdminComponents/Sellers';
+import Customers from './components/AdminComponents/Customers';
+import ManageStocks from './components/AdminComponents/ManageStocks';
+
 
 function App() {
 
@@ -32,14 +38,7 @@ function App() {
       </div>
     )
   }
-  const AdminHome = () => {
-    return (
-      <div>
-        <AdminLayout />
-        <Sellers />
-      </div>
-    )
-  }
+
 
   return (
     <div>
@@ -51,7 +50,12 @@ function App() {
           <Route path = '/signin' element = {<SignIn />} />
           <Route path = '/adminlogin' element = {<AdminLogin />} />
           <Route path = '/sellerhome' element = {<SellerHome />} />
-          <Route path = '/adminhome' element = {<AdminHome />} />        
+          <Route path="/adminhome" element={<AdminLayout />}>
+            <Route index element={<AdminDashboard />} />
+            <Route path="sellers" element={<Sellers />} />
+            <Route path="customers" element={<Customers />} />
+            <Route path="managestocks" element={<ManageStocks />} />
+          </Route>     
         </Routes>
       </BrowserRouter>
      

@@ -9,9 +9,20 @@ import {
 
 const AdminLogin = () => {
 
-const navigate = useNavigate()
+const[username, setUsername] = useState('')
+const[password, setPassword] = useState('')
+const[error, setError] = useState(false)
 
-const [action, setAction] = useState("Log In as Administrator")
+const handleSubmit = (e) => {
+  e.preventDefault();
+  if(username.length===0 || password.length===0){
+    setError(true)
+  }
+  if(username&&password)
+  console.log(username,password)
+}
+
+const navigate = useNavigate()
 
   return (
     <div className='bg-cover h-screen flex items-center justify-center' 
@@ -21,18 +32,40 @@ const [action, setAction] = useState("Log In as Administrator")
             <FaTimes size={25} style={{ color: '#FF5733'}} onClick={() => navigate ('/')}/>
           </div>
         <div className='header flex flex-col items-center gap-4 mb-5 mt-1'>
-            <div className='flex text items-center text-[250%] font-bold pt-0' style={{ background: 'linear-gradient(to right, #FF5733, #FFC300, #FF5733)', WebkitBackgroundClip: 'text', color: 'transparent'}}>{action}</div>
+            <div className='flex text items-center text-[200%] font-bold pt-0' style={{ background: 'linear-gradient(to right, #FF5733, #FFC300, #FF5733)', WebkitBackgroundClip: 'text', color: 'transparent'}}>Admin Login</div>
             <div className='underline w-[15%] h-[6px] bg-gradient-to-r from-[#FF5733] via-[#FFC300] to-[#FF5733] rounded ' ></div>
         </div>
         <div className='inputs flex flex-col gap-1'>
-            
-            <div className='input flex items-center  m-auto w-[300px] h-[80px] bg-transparent rounded-[6px]'>
+        <form action='#' onSubmit={handleSubmit}>   
+            <div className='username input flex items-center  m-auto w-[300px] h-[80px] bg-transparent rounded-[6px]'>
                 <FaUser className='px-2' size={35} style={{ color: '#FF5733'}}/>
-                <input className='  bg-transparent text-white text-[19px]'  style={{width:"85%"}} type='text' placeholder='Username'/>
+                <div className='flex flex-col'>
+                  <input className=' bg-transparent text-white text-[19px]' 
+                          id="username" 
+                          name='username' 
+                          style={{width:"85%"}} 
+                          type='text' 
+                          placeholder='Username'
+                          onChange={e=>setUsername(e.target.value)}
+                  />
+                  {error&&username.length<=0?
+                  <label className='text-red-500 text-[13px]'>Username can't be empty.</label>:""}
+                </div>
             </div>
-            <div className='input flex items-center m-auto w-[300px] h-[80px] bg-transparent rounded-[6px]'>
+            <div className='adminpassword input flex items-center m-auto w-[300px] h-[80px] bg-transparent rounded-[6px]'>
                 <FaLock className='px-2' size={35} style={{ color: '#FF5733'}}/>
-                <input className='  bg-transparent text-white text-[19px]'  style={{width:"85%"}} type='text' placeholder='Password'/>
+                <div className='flex flex-col'>
+                  <input className='bg-transparent text-white text-[19px]' 
+                          id='adminpassword' 
+                          name='adminpassword' 
+                          style={{width:"85%"}} 
+                          type='password' 
+                          placeholder='Password'
+                          onChange={e=>setPassword(e.target.value)}
+                  />
+                  {error&&password.length<=0?
+                  <label className='text-red-500 text-[13px]'>Password can't be empty.</label>:""}
+                </div>
             </div>
             
             <div className='submit-container flex mx-auto my-[1rem]  gap-1'>
@@ -51,10 +84,9 @@ const [action, setAction] = useState("Log In as Administrator")
                 e.target.style.backgroundColor = 'white';
                 e.target.style.color = 'black'; 
               }}
-
             >Log In</button>
             </div>
-            
+          </form>  
         </div>
         </div>
 
