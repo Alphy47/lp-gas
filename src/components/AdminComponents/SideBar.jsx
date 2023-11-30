@@ -1,6 +1,7 @@
 import React, { Children, useState } from 'react'
 import logo from '../../assests/logo.png'
 import { Link } from 'react-router-dom'
+import { useSelectedLink } from './lib/consts/SelectedLinkContext'
 import { 
           FaBars,
           FaThLarge,
@@ -11,6 +12,12 @@ import {
 } from 'react-icons/fa';
 
 export default function SideBar() {
+
+const { updateSelectedLink } = useSelectedLink();
+
+const handleLinkClick = (name) => {
+  updateSelectedLink(name);
+};
 
 const menus = [
   {name: "Dashboard", link: '/adminhome',icon: FaThLarge},
@@ -25,7 +32,7 @@ const menus = [
 const [open, setOpen] = useState(true)
 
   return (
-    <div className={`bg-[#0a042d] min-h-screen ${open ? 'w-72':'w-16'} duration-500 text-gray-100`}>
+    <div className={`bg-black  min-h-screen ${open ? 'w-72':'w-16'} duration-500 text-white` } style={{backgroundColor: 'rgba(0, 0, 0, 0.7)'}}>
 
       <div className='py-3 flex justify-end px-4'>
         <FaBars size={20} style={{ color: '#FF5733'}} className='cursor-pointer' onClick={()=>setOpen(!open)}/>
@@ -37,7 +44,10 @@ const [open, setOpen] = useState(true)
 
       <div className='mt-6 flex flex-col gap-4 relative'>
         {menus?.map((menu, i) => (
-          <Link to={menu?.link} key={i} className='group flex pl-5 items-center text-sm gap-3.5 font-medium p-2 hover:bg-gray-800 rounded-md'>
+          <Link to={menu?.link} 
+                key={i} 
+                className='group flex pl-5 items-center text-sm gap-3.5 font-medium p-2 hover:bg-gray-800 rounded-md'
+                onClick={() => handleLinkClick(menu.name)}>
             <div>
               {React.createElement(menu?.icon, {size: '20', color: '#FF5733'})} 
             </div>
