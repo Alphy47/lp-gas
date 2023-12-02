@@ -17,9 +17,40 @@ const handleSubmit = (e) => {
   e.preventDefault();
   if(username.length===0 || password.length===0){
     setError(true)
+  }else{
+      console.log(username,password);
+
+      var dataset={
+        username:username,
+        password:password
+      }
+
+      console.log('come')
+ 
+      fetch('http://localhost:5000/api/auth/admin', {
+     method: 'POST',  
+     body: JSON.stringify(dataset),  
+     headers:{
+       'Content-Type': 'application/json'
+      }
+       }).then(res => res.json())
+       .then(response => {
+
+        console.log('success',response.success);
+        if(response.success==true){ 
+        console.log('login success');
+        navigate ('/adminhome')
+
+        }else{ 
+        console.log('login unsuccess',response.message);
+        alert(response.message)
+        }
+
+       })
+       .catch(error => console.error('Error:', error));
   }
-  if(username&&password)
-  console.log(username,password)
+  // if(username&&password)
+
 }
 
 const navigate = useNavigate()

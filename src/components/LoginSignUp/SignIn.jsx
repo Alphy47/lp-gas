@@ -12,6 +12,7 @@ import {
 
 const SignIn = () => {
 
+
   const[name, setName] = useState('')
   const[email, setEmail] = useState('')
   const[address, setAddress] = useState('')
@@ -23,6 +24,44 @@ const SignIn = () => {
     e.preventDefault();
     if(name.length===0 || email.length===0 || address.length===0 || password.length===0 || rePassword.length===0){
       setError(true)
+      return; // Exit early if any field is empty
+    }
+    if (password !== rePassword) {
+      setError(true);
+      console.log('Passwords do not match');
+      return; // Exit early if passwords do not match
+    }else{
+      console.log(name,email,address,password,rePassword)
+
+      var dataset={
+        name:name,
+        email:email,
+        address:address,
+        password:password
+      }
+
+      console.log('come')
+
+      fetch('http://localhost:5000/api/register', {
+        method: 'POST',
+        body: JSON.stringify(dataset),
+        headers:{
+          'context-Type': 'application/json'
+        }
+      }).then(res => res.json())
+      .then(response => {
+
+        console.log('success', response.success);
+        if(response.success==true){
+          console.log('Registration Sussessful');
+          navigate('login')
+
+        }else {
+          console.log('Registration unsuccessful.', response.message);
+          alert(response.message)
+        }
+      })
+      .catch(error => console.error('Error:', error));
     }
     if(name&&email&&address&&password&&rePassword)
     console.log(name,email,address,password,rePassword)
@@ -185,7 +224,9 @@ const handleCheckboxChange = () => {
                   onMouseLeave={(e) => {
                   e.target.style.backgroundColor = 'white';
                   e.target.style.color = 'black'; 
-                  }}>
+                  }}
+                  // onClick={handleSubmit}
+                  >
                   Sign In
                 </button>
               </div>
