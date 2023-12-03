@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import indexbg from '../../assests/indexbg.jpg'
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import {
     FaEnvelope,
@@ -68,8 +69,8 @@ const [action, setAction] = useState("Log In")
                 </div>
             </div>
             
-            <div className='submit-container flex mx-auto my-[1rem]  gap-5'>
-            <button className='bg-white w-[100px] rounded-md font-bold mb-4 mt-2 ml-auto py-0 h-[30px] text-black' 
+            <div className='submit-container flex flex-col mx-auto my-[1rem] items-center'>
+            <button className='bg-white w-[100px] rounded-md font-bold mb-4 mt-2 py-0 h-[30px] text-black' 
             style = {{ transition: 'background-color 0.3s, color 0.3s',
               border: 'none', 
               cursor: 'pointer',
@@ -83,25 +84,12 @@ const [action, setAction] = useState("Log In")
                 e.target.style.backgroundColor = 'white';
                 e.target.style.color = 'black'; 
               }}
-              onClick={() => navigate ('/signin')}
-            >Sign Up</button>
+              onClick={() => navigate ('/register')}
+            >Login</button>
 
-<button className='bg-white w-[100px] rounded-md font-bold mt-2 mb-0 mr-auto  h-[30px] text-black' 
-            style = {{ transition: 'background-color 0.3s, color 0.3s',
-              border: 'none', 
-              cursor: 'pointer',
-              backgroundColor: 'white',
-              color: 'black' }}
-              onMouseEnter={(e) => {
-                e.target.style.backgroundColor = '#FF5733'; 
-                e.target.style.color = 'white'; 
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.backgroundColor = 'white';
-                e.target.style.color = 'black'; 
-              }}
-
-            >Log In</button>
+            <p className='text-white'>
+              New to Gas Hub? &nbsp;<a href='/register' className='text-[#FF5733] '>Sign Up</a> here.
+            </p>
             </div>
             <div>
               <p className='text-white flex pb-6 justify-center'>LogIn As an &nbsp;

@@ -10,77 +10,110 @@ import {
     FaAddressCard
 } from 'react-icons/fa'
 
-const SignIn = () => {
+const SignUp = () => {
 
 
   const[name, setName] = useState('')
   const[email, setEmail] = useState('')
+  const[userType, setUserType] = useState('customer')//radio values
   const[address, setAddress] = useState('')
   const[password, setPassword] = useState('')
   const[rePassword, setrePassword] = useState('')
   const[error, setError] = useState(false)
-  
-  const handleSubmit = (e) => {
+  const navigate = useNavigate()
+
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if(name.length===0 || email.length===0 || address.length===0 || password.length===0 || rePassword.length===0){
       setError(true)
-      return; // Exit early if any field is empty
-    }
-    if (password !== rePassword) {
-      setError(true);
-      console.log('Passwords do not match');
-      return; // Exit early if passwords do not match
     }else{
-      console.log(name,email,address,password,rePassword)
+        console.log(name,email, address, userType, password, rePassword);
+  
+        var dataset={
+          name:name,
+          email:email,
+          usertype:userType,
+          address:address,
+          password:password
+        }
+        //var dataset={name:"zczx",email:"zxczc",usertype:"customer",address:"zxczxc",password:"123"}
+        console.log('come')
 
-      var dataset={
-        name:name,
-        email:email,
-        address:address,
-        password:password
+        try {
+          const response = await fetch('http://localhost:5000/api/register', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(dataset)
+          });
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          const responseData = await response.json();
+
+          if (responseData && responseData.success) {
+            console.log('Registration successful');
+            navigate('/');
+          } else {
+            console.log('Registration unsuccessful');
+            const errorMessage = responseData && responseData.message ? responseData.message : 'Unexpected error occurred';
+            alert(errorMessage);
+          }
+
+        }catch (error) {
+          console.error('Error:', error);
+          alert('Network error occurred. Please try again.');
+        }
+
+         
+      //   fetch('http://localhost:5000/api/register', {
+      //     method: 'POST',
+      //     body: JSON.stringify(dataset),
+      //     headers: {
+      //         'Content-Type': 'application/json'
+      //     }
+          
+      // })
+      // .then(res => {
+      //     if (!res.ok) {
+      //         throw new Error('Network response was not ok');
+      //     }
+      //     return res.json();
+      // })
+      // .then(response => {
+      //     if (response && response.success) {
+      //         console.log('Registration successful');
+      //         navigate('/');
+      //     } else {
+      //         console.log('Registration unsuccessful');
+      //         if (response && response.message) {
+      //             alert(response.message);
+      //         } else {
+      //             alert('Unexpected error occurred');
+      //         }
+      //     }
+      // })
+      // .catch(error => {
+      //     console.error('Error:', error);
+      //     alert('Network error occurred. Please try again.');
+      // });
+    
+    // if(username&&password)
       }
-
-      console.log('come')
-
-      fetch('http://localhost:5000/api/register', {
-        method: 'POST',
-        body: JSON.stringify(dataset),
-        headers:{
-          'context-Type': 'application/json'
-        }
-      }).then(res => res.json())
-      .then(response => {
-
-        console.log('success', response.success);
-        if(response.success==true){
-          console.log('Registration Sussessful');
-          navigate('login')
-
-        }else {
-          console.log('Registration unsuccessful.', response.message);
-          alert(response.message)
-        }
-      })
-      .catch(error => console.error('Error:', error));
-    }
-    if(name&&email&&address&&password&&rePassword)
-    console.log(name,email,address,password,rePassword)
   }
 
 
-const navigate = useNavigate()
 
 //radio buttons
-const [userType, setUserType] = useState('customer')
+
 
 const handleUserTypeChange = (e) => {
     setUserType(e.target.value);
   }
 
-  const handleSignIn = () => {
-    // Handle sign-in based on userType (customer or seller)
-    // Redirect or perform actions based on the selected userType
-  }
+
 
 //check box
 const [isChecked, setIsChecked] = useState(false)
@@ -192,26 +225,10 @@ const handleCheckboxChange = () => {
                 </div>
               </div>
             
-              <div className='submit-container flex my-[1rem] gap-5'>
-                <button className='bg-white w-[100px] rounded-md font-bold mb-4 mt-2 ml-auto py-0 h-[30px] text-black' 
-                  style = {{ transition: 'background-color 0.3s, color 0.3s',
-                  border: 'none', 
-                  cursor: 'pointer',
-                  backgroundColor: 'white',
-                  color: 'black' }}
-                  onMouseEnter={(e) => {
-                  e.target.style.backgroundColor = '#FF5733'; 
-                  e.target.style.color = 'white'; 
-                  }}
-                  onMouseLeave={(e) => {
-                  e.target.style.backgroundColor = 'white';
-                  e.target.style.color = 'black'; 
-                  }}
-                  onClick={() => navigate ('/login')}>
-                  Log In
-                </button>
+              <div className='submit-container flex flex-col my-[1rem] items-center'>
 
-                <button className='bg-white w-[100px] rounded-md font-bold my-2 mr-auto py-0 h-[30px] text-black' 
+                <button type="submit"
+                  className='bg-white w-[100px] rounded-md font-bold my-2  py-0 h-[30px] text-black' 
                   style = {{ transition: 'background-color 0.3s, color 0.3s',
                   border: 'none', 
                   cursor: 'pointer',
@@ -227,8 +244,11 @@ const handleCheckboxChange = () => {
                   }}
                   // onClick={handleSubmit}
                   >
-                  Sign In
+                  Sign Up
                 </button>
+                <p className='text-white'>
+                  Already a member? &nbsp;<a href='/login' className='text-[#FF5733] '>Login</a> here.
+                </p>
               </div>
             </form>  
           </div>
@@ -238,4 +258,4 @@ const handleCheckboxChange = () => {
   )
 }
 
-export default SignIn
+export default SignUp

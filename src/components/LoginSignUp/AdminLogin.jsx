@@ -25,9 +25,12 @@ const handleSubmit = (e) => {
         password:password
       }
 
+
+     
       console.log('come')
- 
-      fetch('http://localhost:5000/api/auth/admin', {
+       
+      fetch('http://localhost:5000/api/auth/admin', { 
+
      method: 'POST',  
      body: JSON.stringify(dataset),  
      headers:{

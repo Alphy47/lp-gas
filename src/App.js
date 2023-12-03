@@ -7,7 +7,7 @@ import Intro from './components/Intro';
 import Footer from './components/Footer';
 //Login components
 import LoginSignUp from './components/LoginSignUp/LoginSignUp';
-import SignIn from './components/LoginSignUp/SignIn';
+import SignUp from './components/LoginSignUp/SignUp';
 import AdminLogin from './components/LoginSignUp/AdminLogin';
 //admin components
 import AdminLayout from './components/AdminComponents/AdminLayout';
@@ -59,7 +59,7 @@ function App() {
         <Routes>
           <Route path = '/' element = {<Home />} />
           <Route path = '/login' element = {<LoginSignUp />} />
-          <Route path = '/signin' element = {<SignIn />} />
+          <Route path = '/register' element = {<SignUp />} />
           <Route path = '/adminlogin' element = {<AdminLogin />} />
 
           <Route path="/adminhome" element={<AdminLayout />}> 

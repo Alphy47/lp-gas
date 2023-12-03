@@ -1,7 +1,18 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import CustomerTable from './CustomerTable'
 
 export default function Customers() {
-  return <div></div>
+
+ 
+  return <div >
+            <div className='overflow-y-auto h-[100%] flex w-[100%] '>
+              <CustomerTable />
+            </div>
+            <div className=''>
+
+            </div>
+  
+        </div>
 }
+
 
