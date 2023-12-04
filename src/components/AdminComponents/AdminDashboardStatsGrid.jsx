@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   FaIdBadge,
   FaUsers,
@@ -7,7 +7,41 @@ import {
   FaTwitterSquare,
 } from 'react-icons/fa';
 
+
+
 function AdminDashboardStatsGrid() {
+
+    const [totalSellers, setTotalSellers] = useState();
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch ('http://localhost:5000/api/dashboard');
+                if (!response.ok) {
+                    throw new Error ('Network response was not ok');
+                }
+                const data = await response.json();
+                setTotalSellers(data.totalSellersCount);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    // useEffect(() => {
+    //     fetch('http://localhost:5000/api/dashboard')
+    //     .then(response => response.json())
+    //     .then(data => {
+    //         console.log('Received data:', data)
+    //         setTotalSellers(data.totalSellersCount); // Make sure the property name matches
+    //     })
+    //     .catch(error => console.error('Error:', error));
+    // }, 
+    
+    // []);
+
   return (
     
     <div className='relative max-w-[1240px] mx-auto grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 gap-5 text-white '>
@@ -20,7 +54,7 @@ function AdminDashboardStatsGrid() {
             <div className='w-[50%] flex justify-center mt-1'>
                 <FaIdBadge size={25} style={{ color: '#4CAF50'}}/>
             </div>
-            <label className='text-2xl'>199</label>
+            <label className='text-2xl text-white'>{totalSellers}</label>
         </div>
       </div>
 

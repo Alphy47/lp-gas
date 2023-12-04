@@ -59,7 +59,7 @@ function App() {
         <Routes>
           <Route path = '/' element = {<Home />} />
           <Route path = '/login' element = {<LoginSignUp />} />
-          <Route path = '/register' element = {<SignUp />} />
+          <Route path = '/signup' element = {<SignUp />} />
           <Route path = '/adminlogin' element = {<AdminLogin />} />
 
           <Route path="/adminhome" element={<AdminLayout />}> 

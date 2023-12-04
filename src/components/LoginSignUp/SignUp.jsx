@@ -41,7 +41,7 @@ const SignUp = () => {
         console.log('come')
 
         try {
-          const response = await fetch('http://localhost:5000/api/register', {
+          const response = await fetch('http://localhost:5000/api/signup', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -49,6 +49,7 @@ const SignUp = () => {
             body: JSON.stringify(dataset)
           });
           if (!response.ok) {
+            console.log(response);
             throw new Error('Network response was not ok');
           }
           const responseData = await response.json();
@@ -110,6 +111,7 @@ const SignUp = () => {
 
 
 const handleUserTypeChange = (e) => {
+  console.log(e.target.value);
     setUserType(e.target.value);
   }
 

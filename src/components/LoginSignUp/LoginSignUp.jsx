@@ -20,9 +20,44 @@ const LoginSignUp = () => {
     e.preventDefault();
     if(email.length===0 || password.length===0){
       setError(true)
+    }else{
+      console.log(email,password)
+
+      var dataset={
+
+        email:email,
+        password:password
+      }
+
+      fetch('http://localhost:5000/api/userlogin', { 
+
+      method: 'POST',  
+      body: JSON.stringify(dataset),  
+      headers:{
+        'Content-Type': 'application/json'
+       }
+        }).then(res => res.json())
+        .then(response => {
+
+          console.log('success',response.success);
+          if(response.success==true){ 
+          console.log('login success');
+            
+            if(response.userType === 'seller'){
+              navigate('/sellerhome')
+            } else if (response.userType === 'customer'){
+              navigate('/customerhome')
+            }
+  
+          }else{ 
+          console.log('login unsuccess',response.message);
+          alert(response.message)
+          }
+  
+         })
+         .catch(error => console.error('Error:', error));
     }
-    if(email&&password)
-    console.log(email,password)
+    
   }
 
 const navigate = useNavigate()
@@ -84,11 +119,11 @@ const [action, setAction] = useState("Log In")
                 e.target.style.backgroundColor = 'white';
                 e.target.style.color = 'black'; 
               }}
-              onClick={() => navigate ('/register')}
+              onClick={() => navigate ('#')}
             >Login</button>
 
             <p className='text-white'>
-              New to Gas Hub? &nbsp;<a href='/register' className='text-[#FF5733] '>Sign Up</a> here.
+              New to Gas Hub? &nbsp;<a href='/signup' className='text-[#FF5733] '>Sign Up</a> here.
             </p>
             </div>
             <div>
