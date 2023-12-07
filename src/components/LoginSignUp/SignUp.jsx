@@ -25,8 +25,11 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if(name.length===0 || email.length===0 || address.length===0 || password.length===0 || rePassword.length===0){
+    if(name.length===0 || email.length===0 || address.length===0 || password.length===0 || rePassword.length===0 ){
       setError(true)
+    }else if(rePassword !== password) {
+      setError(true)
+      
     }else{
         console.log(name,email, address, userType, password, rePassword);
   
@@ -35,38 +38,43 @@ const SignUp = () => {
           email:email,
           usertype:userType,
           address:address,
+          
           password:password
         }
         //var dataset={name:"zczx",email:"zxczc",usertype:"customer",address:"zxczxc",password:"123"}
         console.log('come')
 
-        try {
-          const response = await fetch('http://localhost:5000/api/signup', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(dataset)
+        fetch("http://localhost:5000/api/signup", {
+          method: "POST",
+          body: JSON.stringify(dataset),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((res) => {
+            if (!res.ok) {
+              throw new Error("Network response was not ok");
+            }
+            return res.json();
+          })
+          .then((response) => {
+            if (response && response.success) {
+              console.log("Registration successful");
+              navigate("/login");
+            } else {
+              console.log("Registration unsuccessful");
+              if (response && response.message) {
+                // alert(response.message);
+                navigate("/login");
+              } else {
+                alert("Unexpected error occurred");
+              }
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            alert("Network error occurred. Please try again.");
           });
-          if (!response.ok) {
-            console.log(response);
-            throw new Error('Network response was not ok');
-          }
-          const responseData = await response.json();
-
-          if (responseData && responseData.success) {
-            console.log('Registration successful');
-            navigate('/');
-          } else {
-            console.log('Registration unsuccessful');
-            const errorMessage = responseData && responseData.message ? responseData.message : 'Unexpected error occurred';
-            alert(errorMessage);
-          }
-
-        }catch (error) {
-          console.error('Error:', error);
-          alert('Network error occurred. Please try again.');
-        }
 
          
       //   fetch('http://localhost:5000/api/register', {

@@ -7,7 +7,7 @@ import {
 
 const CustomerMessages = () => {
 
-    const navigate = useNavigate()
+const navigate = useNavigate()
 
   return (
     <div className='bg-cover h-screen flex items-center justify-center' 

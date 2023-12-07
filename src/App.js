@@ -17,6 +17,7 @@ import Customers from './components/AdminComponents/Customers';
 import ManageStocks from './components/AdminComponents/ManageStocks';
 import AdminNotifications from './components/AdminComponents/AdminNotifications';
 import AdminMessages from './components/AdminComponents/AdminMessages';
+import AddSellerStocks from './components/AdminComponents/AddSellerStocks';
 //seller components
 import SellerLayout from './components/SellerComponents/SellerLayout';
 import SellerDashboard from './components/SellerComponents/SellerDashboard';
@@ -34,7 +35,8 @@ import OrderStatus from './components/CustomerComponents/OrderStatus';
 import MakeComplaint from './components/CustomerComponents/MakeComplaint';
 import CustomerNotifications from './components/CustomerComponents/CustomerNotifications';
 import CustomerMessages from './components/CustomerComponents/CustomerMessages';
-import CustomerAccount from './components/CustomerComponents/CustomerAcc';
+import CustomerAccount from './components/CustomerComponents/CustomerAcc'
+import PlaceOrderHere from './components/CustomerComponents/PlaceOrderHere';
 
 function App() {
 
@@ -55,7 +57,7 @@ function App() {
 
   return ( 
     <div> 
-      <BrowserRouter>
+      <Router>
         <Routes>
           <Route path = '/' element = {<Home />} />
           <Route path = '/login' element = {<LoginSignUp />} />
@@ -70,6 +72,8 @@ function App() {
           </Route> 
           <Route path="adminnotifications" element={<AdminNotifications />} />    
           <Route path="adminmessages" element={<AdminMessages />} /> 
+          <Route path="/addsellerstocks" element={<AddSellerStocks />}
+          />
 
           <Route path="/sellerhome" element = {<SellerLayout />} >
             <Route index element={<SellerDashboard />} />
@@ -89,9 +93,10 @@ function App() {
           </Route>
           <Route path="customernotifications" element={<CustomerNotifications />} />    
           <Route path="customermessages" element={<CustomerMessages />} /> 
-          <Route path="customeracc" element={<CustomerAccount />} />
+          <Route path="customeraccount" element={<CustomerAccount />} />
+          <Route path="/placeorderhere" element={<PlaceOrderHere />} />
         </Routes>
-      </BrowserRouter>
+      </Router>
      
     </div>
   );

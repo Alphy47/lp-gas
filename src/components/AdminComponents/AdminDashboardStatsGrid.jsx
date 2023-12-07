@@ -12,35 +12,33 @@ import {
 function AdminDashboardStatsGrid() {
 
     const [totalSellers, setTotalSellers] = useState();
+    const [totalCustomers, setTotalCustomers] = useState();
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch ('http://localhost:5000/api/dashboard');
+                const response = await fetch ('http://localhost:5000/api/dashboard',{
+                    method: "POST",
+                    
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                  });
                 if (!response.ok) {
                     throw new Error ('Network response was not ok');
                 }
+                console.log(response)
                 const data = await response.json();
                 setTotalSellers(data.totalSellersCount);
+                setTotalCustomers(data.totalCustomersCount);
             } catch (error) {
                 console.error('Error fetching data:', error);
+
             }
         };
 
         fetchData();
     }, []);
-
-    // useEffect(() => {
-    //     fetch('http://localhost:5000/api/dashboard')
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         console.log('Received data:', data)
-    //         setTotalSellers(data.totalSellersCount); // Make sure the property name matches
-    //     })
-    //     .catch(error => console.error('Error:', error));
-    // }, 
-    
-    // []);
 
   return (
     
@@ -67,7 +65,7 @@ function AdminDashboardStatsGrid() {
             <div className='w-[50%] flex justify-center mt-1'>
                 <FaUsers size={25} style={{ color: '#2196F3'}}/>
             </div>
-            <label className='text-2xl'>199</label>
+            <label className='text-2xl'>{totalCustomers}</label>
         </div>
       </div>
 

@@ -81,7 +81,7 @@ const NavBar = () => {
                     </button>
                 </Link>
             </li>
-            <button className='bg-[#FF5733] w-[75px] rounded-md font-bold my-0 mx-3 py-1 text-black ' onClick={() => navigate ('register')}>
+            <button className='bg-[#FF5733] w-[75px] rounded-md font-bold my-0 mx-3 py-1 text-black ' onClick={() => navigate ('signup')}>
                 SIGN IN
             </button>
             

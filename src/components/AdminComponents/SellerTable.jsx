@@ -43,32 +43,33 @@
         };
         
     return (
-        <div className='flex items-center justify-center flex-1' style={{ backgroundColor: 'rgba(0, 0, 0, 0.7)', padding: '20px' }}>
-    <table className='text-white' style={{ width: '100%', borderCollapse: 'collapse' }}>
-        <thead>
-            <tr className='text-[#FF5733]' style={{ borderBottom: '1px solid white' }}>
-                <th style={{ apadding: '10px' }}>Seller ID</th>
-                <th style={{ padding: '10px' }}>Name</th>
-                <th style={{ padding: '10px' }}>Email</th>
-                <th style={{ padding: '10px' }}>Address</th>
-                <th style={{ padding: '10px' }}>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {sellerData.map(seller => (
-                <tr key={seller.id} style={{ borderBottom: '1px solid white' }}>
-                    <td style={{ padding: '10px' }}>{seller.id}</td>
-                    <td style={{ padding: '10px' }}>{seller.name}</td>
-                    <td style={{ padding: '10px' }}>{seller.email}</td>
-                    <td style={{ padding: '10px' }}>{seller.address}</td>
-                    <td style={{ padding: '10px' }}>
-                        <button style={{ backgroundColor: '#FF5733', color: 'white', border: 'none', padding: '5px 10px', borderRadius: '5px' }} onClick={() => handleDelete(seller.id)}>Delete</button>
-                    </td>
+        <div className='relative w-screen mx-auto items-center justify-center ' style={{ backgroundColor: 'rgba(0, 0, 0, 0.7)', padding: '20px', height: '90vh', overflowY: 'auto' }}>
+        <table className='text-white' style={{ width: '100%', borderCollapse: 'collapse' }}>
+            <thead>
+                <tr className='text-[#FF5733] border-b border-white'>
+                    <th className='p-4'>Seller ID</th>
+                    <th className='p-4'>Name</th>
+                    <th className='p-4'>Email</th>
+                    <th className='p-4'>Address</th>
+                    <th className='p-4'>Actions</th>
                 </tr>
-            ))}
-        </tbody>
-    </table>
-</div>
+            </thead>
+            <tbody>
+                {sellerData.map(seller => (
+                    <tr key={seller.id} style={{ borderBottom: '1px solid white' }}>
+                        <td className='p-4 text-center'>{seller.id}</td>
+                        <td className='p-4 text-center'>{seller.name}</td>
+                        <td className='p-4 text-center'>{seller.email}</td>
+                        <td className='p-4 text-center'>{seller.address}</td>
+                        <td className='p-4 text-center'>
+                            <button style={{ backgroundColor: '#FF5733', color: 'white', border: 'none', padding: '5px 10px', borderRadius: '5px' }} onClick={() => handleDelete(seller.id)}>Delete</button>
+                        </td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
+    </div>
+    
 
     )
     }

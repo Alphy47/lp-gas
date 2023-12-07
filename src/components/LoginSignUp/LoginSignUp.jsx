@@ -15,6 +15,7 @@ const LoginSignUp = () => {
   const[email, setEmail] = useState('')
   const[password, setPassword] = useState('')
   const[error, setError] = useState(false)
+  const navigate = useNavigate()
   
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -23,7 +24,7 @@ const LoginSignUp = () => {
     }else{
       console.log(email,password)
 
-      var dataset={
+      const dataset={
 
         email:email,
         password:password
@@ -40,13 +41,14 @@ const LoginSignUp = () => {
         .then(response => {
 
           console.log('success',response.success);
-          if(response.success==true){ 
+          if(response.success===true){ 
           console.log('login success');
             
             if(response.userType === 'seller'){
               navigate('/sellerhome')
             } else if (response.userType === 'customer'){
               navigate('/customerhome')
+              console.log(response)
             }
   
           }else{ 
@@ -60,7 +62,7 @@ const LoginSignUp = () => {
     
   }
 
-const navigate = useNavigate()
+
 
 const [action, setAction] = useState("Log In")
 

@@ -15,7 +15,7 @@ export default function Header() {
             </div>
             <div className='absolute inset-y-0 right-0 mr-7 flex w-20'>
               <div className='flex flex-1 gap-4 my-3'>
-                <FaUser size={20} style={{ color: '#FF5733'}} className='cursor-pointer' onClick={() => navigate ('/customeracc')}/>
+                <FaUser size={20} style={{ color: '#FF5733'}} className='cursor-pointer' onClick={() => navigate ('/customeraccount')}/>
 
                 <FaBell size={20} style={{ color: '#FF5733'}} className='cursor-pointer' onClick={() => navigate ('/customernotifications')}/>
               
