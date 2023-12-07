@@ -26,15 +26,17 @@ const PlaceOrderHere = () => {
     e.preventDefault();
 
     // Validate form inputs
-    if (!regSize || !budgetSize || !buddySize) {
+    if (!regSize || !budgetSize || !buddySize || !email) {
       setError(true);
       return;
     }
         const dataset={
-           seller_id: sellerId,
-           regSize,
-           budgetSize,
-           buddySize
+            seller_id: sellerId,
+            stock_id: stockId,
+            customer_email: email,
+            regular: regSize,
+            budget: budgetSize,
+            buddy: buddySize
         }
         try {
             const response = await fetch("http://localhost:5000/api/addsellerstocks", {
@@ -61,43 +63,32 @@ const PlaceOrderHere = () => {
           } catch (error) {
             console.error("Error:", error);
             // Handle network or fetch-related errors
-          }
-        // try {
-        //     const response = await fetch("http://localhost:5000/api/addsellerstocks", {
-        //       method: "POST",
-              
-        //       headers: {
-        //         "Content-Type": "application/json",
-        //       },
-        //       body: JSON.stringify(dataset)
-        //     });
-        
-        //     if (!response.ok) {
-        //       throw new Error("Network response was not ok");
-        //     }
-        
-        //     const responseData = await response.json();
-        
-        //     if (responseData && responseData.success) {
-        //         // navigate("../adminhome/managestocks");
-        //         navigate ('/adminnotifications')
-        //       console.log("Stock has been added!");
-            
-        //     } else {
-        //       console.log("Add to Stocks is unsuccessful");
-        //       if (responseData && responseData.message) {
-        //         // alert(responseData.message);
-        //       } else {
-        //         alert("Unexpected error occurred");
-        //       }
-        //     }
-        //   } catch (error) {
-        //     console.error("Error:", error);
-        //     alert("Network error occurred. Please try again.");
-        //   }
+          } 
 
-    
+        try {
+            const response = await fetch("http://localhost:5000/api/placeorder", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify(dataset),
+            })
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+            const responseData = await response.json();
+
+            if (responseData && responseData.message) {
+                console.log("Seller stocks updated successfully");
+                navigate('/customerhome/placeorder')
+            } else {
+                console.log("Update unsuccessful");
+            }
+        } catch (error) {
+            console.error("Error:", error);
+        }
   };
+
 
   return (
     <div className='bg-cover h-screen flex items-center justify-center' style={{ backgroundImage: `url(${indexbg})`, backgroundPosition: 'center' }}>
@@ -106,7 +97,7 @@ const PlaceOrderHere = () => {
           <FaTimes size={25} style={{ color: '#FF5733' }} onClick={() => navigate('../customerhome/placeorder')} />
         </div>
         <div className='header flex flex-col items-center gap-4 mb-5 mt-1'>
-          <div className='flex text items-center text-[200%] font-bold pt-0' style={{ background: 'linear-gradient(to right, #FF5733, #FFC300, #FF5733)', WebkitBackgroundClip: 'text', color: 'transparent' }}>Add Stocks</div>
+          <div className='flex text items-center text-[200%] font-bold pt-0' style={{ background: 'linear-gradient(to right, #FF5733, #FFC300, #FF5733)', WebkitBackgroundClip: 'text', color: 'transparent' }}>Place an Order</div>
           <div className='underline w-[15%] h-[6px] bg-gradient-to-r from-[#FF5733] via-[#FFC300] to-[#FF5733] rounded '></div>
         </div>
         <div className='inputs flex flex-col gap-1'>
@@ -201,7 +192,7 @@ const PlaceOrderHere = () => {
                     backgroundColor: 'white', 
                     color: 'black' }} 
                     onMouseEnter={(e) => { e.target.style.backgroundColor = '#FF5733'; e.target.style.color = 'white'; }} 
-                    onMouseLeave={(e) => { e.target.style.backgroundColor = 'white'; e.target.style.color = 'black'; }}>Add</button>
+                    onMouseLeave={(e) => { e.target.style.backgroundColor = 'white'; e.target.style.color = 'black'; }}>Order</button>
             </div>
           </form>
         </div>

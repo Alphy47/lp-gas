@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 export const PlaceOrderTable = () => {
 
-    function handleClick(sellerId, stockId) {
+    function handleClick(stockId, sellerId) {
         window.location.href = `/placeorderhere?stock_id=${stockId}&seller_id=${sellerId}`;
     }
 
@@ -66,8 +66,8 @@ return (
         <tbody>
             {sellerData.map(seller => (
                 <tr key={seller.id} style={{ borderBottom: '1px solid white' }}>
-                    <td className='p-4 text-center'>{seller.seller_id}</td>
                     <td className='p-4 text-center'>{seller.stock_id}</td>
+                    <td className='p-4 text-center'>{seller.seller_id}</td>
                     <td className='p-4 text-center'>{seller.seller_name}</td>
                     <td className='p-4 text-center'>{seller.address}</td>
                     <td className='p-4 text-center'>{seller.regular}</td>

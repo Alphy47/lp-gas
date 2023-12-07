@@ -50,14 +50,12 @@ const AddSellerStocks = () => {
           
             if (responseData && responseData.message) {
               console.log("Seller stocks updated successfully");
-              // Redirect or perform the desired action upon successful update
+              
             } else {
               console.log("Update unsuccessful");
-              // Handle error or display a message to the user
             }
           } catch (error) {
             console.error("Error:", error);
-            // Handle network or fetch-related errors
           }
         // try {
         //     const response = await fetch("http://localhost:5000/api/addsellerstocks", {
